@@ -53,16 +53,6 @@ form:
             min: 1
             max: 65535
 
-        feed_parameters.user_id:
-          type: text
-          size: small
-          label: User id
-          help: Instagram user id whose feed will be shown
-          placeholder: "user id"
-          default: ''
-          validate:
-            type: string
-
         feed_parameters.access_token:
           type: text
           size: large
