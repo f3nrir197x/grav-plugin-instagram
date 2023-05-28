@@ -10,8 +10,6 @@ class InstagramPlugin extends Plugin
 {
     private $template_html = 'partials/instagram.html.twig';
     private $template_vars = [];
-    private $cache;
-    const HOUR_IN_SECONDS = 3600;
 
     /**
      * Return a list of subscribed events.
@@ -67,19 +65,6 @@ class InstagramPlugin extends Plugin
         // Autoload composer components
         require __DIR__ . '/vendor/autoload.php';
 
-        // Set up cache settings
-        $cache_config = array(
-            "storage"   =>  "files",
-            "default_chmod" => 0777,
-            "fallback" => "files",
-            "securityKey" => "auto",
-            "htaccess" => true,
-            "path" => __DIR__ . "/cache"
-        );
-
-        // Init the cache engine
-        $this->cache = phpFastCache("files", $cache_config);
-
         // Set access token
         $access_token = $config->get('feed_parameters.access_token');
         
@@ -92,18 +77,9 @@ class InstagramPlugin extends Plugin
         // Instagram API url
         $url = "https://graph.instagram.com/me/media?fields={$fields}&access_token={$access_token}&limit={$count}";
         
-        // Get the cached results if available
-        $results = $this->cache->get($url);
-
-        // Get the results from the live API, cached version not found
-        if ($results === null) {
-            // Get the results from the live API
-            $response = @file_get_contents($url);
-            $results = json_decode($response, true, 512, JSON_BIGINT_AS_STRING);
-            
-            // Cache the results
-            $this->cache->set($url, $results, InstagramPlugin::HOUR_IN_SECONDS * $config->get('feed_parameters.cache_time')); // Convert hours to seconds
-        }
+        // Get the results from the live API
+        $response = @file_get_contents($url);
+        $results = json_decode($response, true, 512, JSON_BIGINT_AS_STRING);
 
         $feed = [];
         foreach($results["data"] as $post){
@@ -121,9 +97,7 @@ class InstagramPlugin extends Plugin
         }
 
         $this->template_vars = [
-/**            'user_id'   => $config->get('feed_parameters.user_id'),
-            'client_id' => $config->get('feed_parameters.client_id'),
-**/         'feed'      => $feed,
+            'feed'      => $feed,
             'count'     => $config->get('feed_parameters.count'),
             'params'    => $params
         ];
