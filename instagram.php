@@ -121,9 +121,9 @@ class InstagramPlugin extends Plugin
         }
 
         $this->template_vars = [
-            'user_id'   => $config->get('feed_parameters.user_id'),
+/**            'user_id'   => $config->get('feed_parameters.user_id'),
             'client_id' => $config->get('feed_parameters.client_id'),
-            'feed'      => $feed,
+**/         'feed'      => $feed,
             'count'     => $config->get('feed_parameters.count'),
             'params'    => $params
         ];
