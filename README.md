@@ -4,21 +4,21 @@
 
 # Installation
 
-Installing the Instagram plugin can be done in one of two ways. Using GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
+~~Installing the Instagram plugin can be done in one of two ways. Using GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
 
 ## GPM Installation (Preferred)
 
-The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line).  From the root of your Grav install type:
+~~The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line).  From the root of your Grav install type:
 
     bin/gpm install instagram
 
-This will install the Instagram plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/instagram`.
+~~This will install the Instagram plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/instagram`.
 
 ## Manual Installation
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `instagram`. You can find these files either on [GitHub](https://github.com/artifex404/grav-plugin-instagram) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
+To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `instagram`. You can find these files either on [GitHub](https://github.com/f3nrir197x/grav-plugin-instagram) ~~or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
 
-You should now have all the plugin files under
+~~You should now have all the plugin files under
 
     /your/site/grav/user/plugins/instagram
 
@@ -26,11 +26,11 @@ You should now have all the plugin files under
 
 You need to provide few configurations in order for the feed show up. In your Grav Administration panel, go to Plugins > Instagram to view the plugin configuration page.
 
-Enter the Instagram *user_id* whose feed you want to show, and your Instagram API *access_token*.
+Enter the ~~Instagram *user_id* whose feed you want to show, and your~~ Instagram API *access_token*.
 
 Note, that your access token needs to have the public_content scope authorized.
 
-For more information how to get user_id or access_token, see the [Instagram API documentation](https://www.instagram.com/developer/).
+For more information how to get user_id or access_token, see the [Instagram API documentation](https://developers.facebook.com/docs/instagram-api/).
 
 # Customization
 
@@ -51,7 +51,7 @@ If you need to override some plugin default values, the best practise is to copy
 To use this plugin you simply need to include a function your template file such as:
 
 ```
-{{ instagram_feed() }}
+{{ instagram_feed()|raw }}
 ```
 
 This will be converted into your Instagram feed as follows:
