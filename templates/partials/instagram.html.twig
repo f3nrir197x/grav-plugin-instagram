@@ -1,3 +1,19 @@
-{% for post in feed|slice(0, count)  %}
-    <li><a href="{{ post.link }}" target="_blank"><img src="{{ post.image }}" alt=""></a></li>
+<table>
+{% for post in feed|slice(0, count) %}
+        <tr>
+        <div class='ig_post_details'>
+            <div>
+               <td><strong>"{{ post.caption }}"</strong></td>
+            </div>
+            <div class='ig_view_link'>
+                <td><a href="{{ post.link }}" target="_blank">
+                {% if post.type == "VIDEO" %}
+                        <video controls style='width:25%; display: block !important;'><source src='{{ post.image }}' type=>
+                {% else %}
+                        <img src="{{ post.image }}" alt=""></a></td>
+                {% endif %}
+            </div>
+        </div>
+        <tr>
 {% endfor %}
+</table>
